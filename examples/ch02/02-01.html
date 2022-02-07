@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>02-01</title>
+</head>
+<body>
+  <div id="simple">
+    <h2>{{message}}</h2>
+  </div>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+    var model = {
+      message : 'Hello vue.js'
+    };
+
+    var simple = new Vue({
+      el : '#simple',
+      data : model
+    })
+  </script>
+</body>
+</html>
+<!--
+Vue.js와 MVVM 패턴
+  - View(유저 인터페이스) <-> View Model(상태와 연산) <-> Model(도메인 특화 데이터)
+  - HTML 요소에서는 {{}}과 같은 콧수염을 닮은 모양의 템플릿 표현식을 사용해 선언적으로 HTML DOM에 데이터를 랜덩링함.
+  - 모델(Model)을 변경하면 뷰모델(ViewModel) 객체를 통해 HTML DOM이 즉시 변경됨.
+-->
