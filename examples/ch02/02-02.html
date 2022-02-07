@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>02-02</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+  <div id="simple01">
+    <h2 v-text="message"></h2>
+  </div>
+  <div id="simple02">
+    <h2 v-html="message"></h2>
+  </div>
+  <script type="text/javascript">
+    var model = {
+      message : 'Hello vue.js'
+    };
+
+    var simple01 = new Vue({
+      el : '#simple01',
+      data : model
+    })
+
+    var simple02 = new Vue({
+      el : '#simple02',
+      data : model
+    })
+  </script>
+</body>
+</html>
+<!--
+v-text, {{}}
+  - innerText 속성에 연결됨. 태그 문자열을 HTML 인코딩하여 나타내기 때문에 화면에는 태그 문자열이 그대로 나타남.
+v-html
+  - innerHTML 속성에 연결됨. 태그 문자열을 파싱하여 화면에 나타냄.
+  - <script> 태그를 그대로 바인딩하여, XSS(Cross Site Scripting) 공격 등에 취약함.
+-->
