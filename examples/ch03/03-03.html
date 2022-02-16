@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>03-02</title>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+    금액 : <span>{{amount}}원</span>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+    el : "#example",
+    data : { amt : 1234567 },
+    computed : {
+        amount : {
+            get : function() {
+                var s = new String(""+this.amt);
+                var result = "";
+                var num = 0;
+                for (var i=s.length-1; i>=0; i--) {
+                    result = s[i] + result;
+                    if (num % 3 == 2 && i !== 0)
+                        result = "," + result;
+                    num++;
+                }
+                return result;
+            },
+            set : function(amt) {
+                if (typeof(amt) === "string") {
+                    var result = parseInt(amt.replace(/,/g, ""))
+                    if (isNaN(result)) this.amt = 0;
+                    else   this.amt = result;
+                } else if (typeof(amt) === "number")
+                    this.amt = amt;
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
+<!--
+computed 옵션
+ - 계산형 속성은 읽기 전용이라 생각하기 쉽지만 set 메서드를 지정하면 쓰기 작업도 가능
+ - get 메서드는 데이터 속성인 amt 값을 숫자 3자리마다 쉼표(,)를 넣어서 리턴
+ - set 메서드는 문자열을 입력받으면 쉼표(,)를 제거한 뒤 숫자 값으로 변환하여 amt 데이터 속성에 할당
+-->
