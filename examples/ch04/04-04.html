@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>04-04</title>
+  <style>
+   html, body { margin: 0;padding: 0; }
+   #example {
+    height: 98vh; min-height: 100%; padding:5px
+   }
+  </style>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<!-- Vue.js에서는 다양한 이벤트와 관련한 문제를 쉽게 해결하기 위해 이벤트 수식어(Event Modifier)라는 것을 제공하는데 이 중에는 기본 이벤트와 관련한 것도 포함되어 있음 -->
+<!-- 다음과 같이 수정하면 e.preventDefault()는 작성하지 않아도 됨 -->
+<!--<div id="example" v-on:contextmenu.prevent="ctxStop">-->
+<div id="example" v-on:contextmenu="ctxStop">
+    <a href="https://facebook.com" @click="confirmFB">페이스북</a>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+    el : "#example",
+    methods: {
+        ctxStop : function(e) {
+          e.preventDefault();
+        },
+        confirmFB : function(e) {
+            if (!confirm("페이스북으로 이동할까요?")) {
+                e.preventDefault();
+                // 메서드 내부에서는 기본 이벤트(Default Event) 실행을 막기 위해서 이벤트 객체가 제공하는 preventDefault() 메서드를 호출
+                // confirm() 함수를 사용할 때 사용자가 확인 버튼이 아닌 취소 버튼을 클릭하면 preventDefault() 메서드가 호출되어 기본 이벤트의 실행을 중지 (<a> 요소의 기본 이벤트 href 특성의 URL로 이동)
+            }
+        }
+    }
+})
+</script>
+</body>
+</html>
