@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-06</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<script type="text/javascript">
+  Vue.component('option-component', {
+    template : '<option>hello</option>'
+  })
+</script>
+<body>
+    <div id="app">
+        <select>
+            <!-- <select> 태그 안에서 <option-component>라는 태그를 사용할 수 있다는 것이 브라우저에 등록되어 있지 않아서 오류가 발생 -->
+            <option-component></option-component>
+            <option-component></option-component>
+        </select>
+    </div>
+</body>
+<script type="text/javascript">
+var v = new Vue({
+  el : '#app'
+})
+
+</script>
+</html>
+<!--
+DOM 템플릿 구문 작성 시 주의 사항
+ - HTML 요소들은 자식 요소를 포함시킬 수 있는 요소들이 정해져 있는 경우가 있고, 이 사항을 브라우저가 구문 분석을 수행함
+ - Vue 컴포넌트가 사용되면 때때로 오류가 발생
+-->

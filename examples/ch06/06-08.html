@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-08</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<script type="text/javascript">
+  Vue.component('option-component', {
+    template : '<option>hello</option>'
+  })
+</script>
+<!-- <script type="text/x-template"> 내부에서 작성했기 때문에 정상적으로 렌더링되며, <template>으로 변경하면 정상적으로 렌더링되지 않음 -->
+<script type="text/x-template" id="selectTemplate">
+   <select>
+      <option-component></option-component>
+      <option-component></option-component>
+   </select>
+</script>
+<script type="text/javascript">
+  Vue.component('select-component', {
+    template : '#selectTemplate'
+  })
+</script>
+<body>
+<div id="app">
+    <select-component></select-component>
+</div>
+</body>
+<script type="text/javascript">
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>
+<!--
+템플릿 문자열 안에서 루트 요소(Root Element)는 하나만 존재하야지 정상적으로 렌더링됨
+ - 루트 요소가 하나가 아닐 때 정상적으로 렌더링되지 않음
+  <template>
+    <div>hello</div>
+    <div>world</div>
+  </template>
+
+ - <div> 요소 등으로 감싸서 루트 요소가 하나가 되도록 해야지 정상적으로 렌더링됨
+  <template>
+    <div>
+      <div>hello</div>
+      <div>world</div>
+    </div>
+  </template>
+-->
