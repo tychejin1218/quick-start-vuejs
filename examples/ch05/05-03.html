@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-03</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+  <div 
+    :style="{ backgroundColor: a.bc, border:a.bd, width:a.w+'px', height:a.h+'px' }">
+  </div>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+    a : { bc:"yellow", bd:'solid 1px gray', w:200, h:100 }
+  }
+})
+</script>
+</body>
+</html>
+<!-- v-bind:style 디렉티브를 통해서 개별적인 속성 하나하나를 바인딩할 수도 있음(코드를 유지 보수하기 힘들기 때문에 추천하지 않음) -->

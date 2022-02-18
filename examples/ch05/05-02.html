@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-02</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+  <button id="a" v-bind:style="style1" @mouseover.stop="overEvent" 
+      @mouseout.stop="outEvent">테스트</button>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+    style1 : { backgroundColor:"aqua", border:'solid 1px gray', 
+      with:'100px', textAlign:'center' }
+  },
+  methods : {
+    overEvent : function(e) {
+      this.style1.backgroundColor = "purple";
+      this.style1.color = "yellow";
+    },
+    outEvent : function(e) {
+      this.style1.backgroundColor = "aqua";
+      this.style1.color = "black";
+    }
+  }
+})
+</script>
+</body>
+</html>
+<!--
+인라인 스타일
+ - Vue.js에서는 인라인 스타일(HTML 요소의 style 프로퍼티에 CSS를 기술하는 방식)의 사용을 권장하지 않음(기존 HTML도 사용을 권장하지 않음)
+ - v-bind:style로 작성하며, style로 지정할 정보는 데이터 속성에 작성
+
+데이터 속성을 작성할 때 주의 사항
+ - 스타일 속성을 케밥 표기법(kebab casing)이 아닌 카멜 표기법(camel casing)을 사용해야함
+ - 스타일 속성과 속성은 세미콜론(;)이 아닌 콤마(,) 기호를 이용해 구분해야함
+
+케밥 표기법
+ - font-size, background-color
+카멜 표기법
+ - fontSize, backgroundColor
+-->
