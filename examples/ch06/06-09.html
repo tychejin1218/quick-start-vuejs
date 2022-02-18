@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-09</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  <template id='timeTemplate'>
+    <div>
+        <span>{{nowTS}}</span>
+        <button v-on:click="timeClick">현재 시간</button>
+    </div>
+  </template>    
+  <script type="text/javascript">
+    Vue.component('time-component', {
+      template : '#timeTemplate',
+      data : { nowTS : 0 },
+      methods : {
+          timeClick : function(e) {
+              this.nowTS = (new Date()).getTime();
+          }
+      }
+    })
+  </script>
+</head>
+<body>
+    <div id="app">
+        <time-component></time-component>
+        <time-component></time-component>
+    </div>
+    <script type="text/javascript">
+    var v = new Vue({
+        el : '#app'
+    })
+    </script>    
+</body>
+</html>
+<!-- 컴포넌트 내부의 로컬 상태 정보를 저장하기 위해 data 옵션을 사용할 수 있지만, data 옵션에 객체를 직접 지정하면 컴포넌트가 정상적으로 렌더링되지 않고 오류가 발생 -->
