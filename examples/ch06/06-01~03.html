@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-01</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    Vue.component('hello-component', {
+      template : '<div>hello world!!!</div>'
+    })
+  </script>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+  </div>
+  <script type="text/javascript">
+    var v = new Vue({
+      el : '#app'
+    })
+  </script>    
+</body>
+</html>
+<!--
+컴포넌트 조합
+ - 컴포넌트들은 부모-자식 관계로 트리 구조를 형성
+ - 부모 컴포넌트가가 자식 컴포넌트를 포함하는 형태
+ - 컴포넌트들은 속성(Props)을 통해서 자식 컴포넌트로 정보를 전달
+ - 부모 컴포넌트는 자식 컴포넌트로 속성을 전달할 수 있고, 자식 컴포넌트는 부모 컴포넌트로 이벤트를 발신할 수 있음
+
+주의사항
+ - 컴포넌트에서의 data 옵션은 함수로 작성하고 함수 내부에서 객체를 리턴하도록 작성
+
+컴포넌트의 작성
+ - Vue.component(tagname, options)
+  - tagname : 컴포넌트를 사용할 태그명
+  - options : 컴포넌트에서 렌더링할 templet 등을 지정
+-->

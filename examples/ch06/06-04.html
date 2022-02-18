@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-04</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<template id="helloTemplate">
+    <div>hello world!!!</div>
+</template>
+<script type="text/javascript">
+    /* 컴포넌트를 작성할 때 template 옵션을 설정 */
+    /* template 옵션에 적용할 수 있는 값은 인라인 템플릿 방식으로 템플릿 문자열을 직접 지정해도 되지만,
+    템플릿 문자열을 포함하고 있는 <template> 태그, <script type="text/x-template"> 태그의 id를 지정해도 됨             */
+  Vue.component('hello-component', {
+    template : '#helloTemplate'
+  })
+</script>
+<body>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+  </div>
+</body>
+<script type="text/javascript">
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>
