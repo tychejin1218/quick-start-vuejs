@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-18</title>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!-- child Component 시작 -->
+<style>
+    .buttonstyle { width:120px; height:30px; text-align: center; }
+</style>
+<template id="childTemplate">
+    <div>
+        <button class="buttonstyle" v-on:click="clickEvent" 
+            v-bind:data-lang="buttonInfo.value">{{ buttonInfo.text }}</button>
+    </div>
+</template>
+<script type="text/javascript">
+Vue.component('child-component', {
+    template : '#childTemplate',
+    // buttonInfo 속성을 정의하였고, 이 속성은 부모 컴포넌트로부터 값을 전달받으며 전달받은 값을 이용해 버튼 리스트를 생성
+    props : [ 'buttonInfo' ],
+    methods : {
+        clickEvent : function(e) {
+            // 자식 컴포넌트 내부에서 버튼이 클릭되면 $emit() 메서드를 이용해 timeclick 이벤트를 발신
+            // $emit()을 이용해 이벤트를 발신할 때 필요한 정보들을 인자로 전달할 수 있음
+            this.$emit('timeclick', e.target.innerText, e.target.dataset.lang);
+        }
+    }
+})
+</script>
+<!-- child Component 끝 -->
+<!-- parent Component 시작 -->
+<template id="parent-template">
+    <div>
+        <!-- 부모 컴포넌트에서는 v-on 디렉티브를 이용해 timeclick 이벤트를 처리함 -->
+        <child-component v-for="s in buttons" v-bind:button-info="s" 
+            v-on:timeclick="timeclickEvent">
+        </child-component>
+        <hr />
+        <div>{{ msg }}</div>
+    </div>
+</template>
+<script type="text/javascript">
+Vue.component('parent-component', {
+    template : '#parent-template',
+    props : [ 'buttons' ],
+    data : function() {
+        return { msg:"" };
+    },
+    methods : {
+        timeclickEvent : function(k, v) {
+            this.msg = k + ", " +v;
+        }
+    }
+})
+</script>
+<!-- parent Component 끝 -->
+<body>
+    <div id="app">
+        <parent-component :buttons="buttons"></parent-component>
+    </div>
+</body>
+<script type="text/javascript">
+var vm = new Vue({
+    el : "#app",
+    data : {
+        buttons : [ 
+            { text : "Hello", value : "영어" }, 
+            { text : "씬짜오", value : "베트남어" },
+            { text : "니하오", value : "중국어" }
+        ]
+    }
+})
+</script>
+</html>
+<!--
+event를 이용해서 전달하는 방법
+ - 사용자 정의 이벤트를 활용
+ - 자식 컴포넌트에서는 이벤트를 발신(emit)하고 부모 컴포넌트에서 v-on 디렉티브를 이용해 이벤트를 수신
+-->
