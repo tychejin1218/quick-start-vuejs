@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>06-19</title>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+
+</script>
+</html>
+<!--
+화면 구성 요소
+Root
+ └ searchContactComponent
+    └ searchComponent
+    └ contactlistComponent
+ - search-contact-component 부모 컴포넌트 내부에 자식 컴포넌로써 search-component와 contactlist-component가 포함된 구조
+
+부모와 자식 컴포넌트 사이에 props와 event로 상호작용하도록 작성
+ 1.search-component에서 keyup 이벤트가 발생하면 search-contact-component로 이벤트를 발신
+ 2.텍스트 박스에 입력된 문자열을 인자로 담아 부모 컴포넌트로 전달
+ 3.전달받은 데이터를 이용해 연락처 서비스 API에 요청하여 이름이 포함된 연락처 목록을 받아옴
+ 4.받아온 연락처 목록은 부모 컴포넌트(search-contact-component)의 내부 상태로서 contactlist 데이터 옵션에 저장
+ 5.contact 속성(props)을 통해 contactlist-component 컴포넌트로 전달
+-->
