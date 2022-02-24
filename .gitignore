@@ -1,0 +1,5 @@
+/.idea/
+/examples/ch07/es2015test/node_modules/
+/examples/ch07/es2015test/build/
+/examples/ch07/es2015test/.idea/
+/examples/ch07/es2015test/yarn.lock
